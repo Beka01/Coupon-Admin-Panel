@@ -1,0 +1,76 @@
+.adminlist {
+    margin-top: 30px;
+    &__tools {
+        margin-left: 5px;
+        margin-top: 20px;
+        
+    }
+    &__body {
+        overflow-x: auto;
+        margin-top: 3px;
+        background: #fff;
+        padding: 20px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.19);
+        width: 100%;
+    }
+}
+.btnlist {
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+    color:#fff;
+    &-add {
+        background: #6ab04c; 
+        &:hover {
+            background: #78af60; ;
+        }
+    }
+    &-edit {
+        background: #686de0; 
+        &:hover {
+            background: #8084df; 
+        }
+    }
+    &-remove {
+        background: #eb4d4b; 
+        &:hover {
+            background: #e7716f; 
+        }
+    }
+    &:focus{
+        outline: none;
+    }
+    
+}
+.tableinfo {
+    width: 100%;
+    border-spacing: 8px 2px;
+    border-collapse: collapse;
+    
+    
+    td { 
+        white-space:nowrap;
+        border-bottom: 1px solid #dee2e6;
+        padding: 12px 12px 12px 60px;
+        font-size: 14px;
+        &:first-child {
+            padding: 0;
+        }
+        &:nth-of-type(2) {
+            padding-left: 30px;
+        }
+    }
+    th {
+        border-bottom: 1px solid #dee2e6;
+        padding: 12px 12px 12px 60px;
+        &:first-child {
+            padding: 0;
+        }
+        &:nth-of-type(2) {
+            padding-left: 30px;
+        }
+    }
+}

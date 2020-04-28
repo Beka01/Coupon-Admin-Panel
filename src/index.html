@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/font.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/bootstrap-reboot.min.css">
+    <link rel="stylesheet" href="css/bootstrap-grid.min.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="css/style.min.css">
+</head>
+  <body>
+    <header class="header">
+      <div class="header__contacts">
+        <div class="container-fluid">
+          <div class="header__wrapper">
+            <div class="header__logo">
+              <div class="header__imgblock">
+                <img src="img/AdminLTELogo.png" alt="logo">
+              </div>
+              <span>Coupon.tj</span>
+            </div>
+            <div class="header__menu">
+              <nav>
+                <ul>
+                  <li class="header__item">
+                    <a href="#">Статистика</a>
+                  </li>
+                  <li class="header__item">
+                    <a href="#">Продавцы</a>
+                  </li>
+                  <li class="header__item">
+                    <a href="#">Покупатели</a>
+                  </li>
+                </ul>
+                  <!-- SEARCH FORM -->
+                  <div class="wrapsearch">
+                    <div class="wrapsearch__con">
+                       <input type="text" class="searchTerm" placeholder="Поиск...">
+                       <button type="submit" class="searchButton">
+                         <i class="fa fa-search"></i>
+                      </button>
+                    </div>
+                 </div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-2">
+            <aside>
+              <nav class="sidebar" id="style-6">
+                <!-- CURRENT ADMIN INFO -->
+                <div class="curradmin">
+                  <div class="curradmin__image">
+                    <img src="img/user2-160x160.jpg" alt="User Image">
+                  </div>
+                  <div class="curradmin__name">
+                    <a href="#" >Bek Oripov</a>
+                  </div>
+                </div>
+                <!-- CURRENT ADMIN INFO -->
+                <div class="category">
+                  <div class="category__header">пользователи</div>
+                  <!-- USERS CATEGORY MENU -->
+                  <ul>
+                    <li class="user">
+                      <a href="#" id="firedata" class="admin-btn"><i class="fa fa-user"></i>Администраторы</a>
+                    </li>
+                    <li class="user">
+                      <a href="#" class="sell-btn"><i class="fa fa-user-plus"></i>Продавцы</a>
+                    </li>
+                    <li class="user">
+                      <a href="#" class="buy-btn"><i class="fa fa-users"></i>Покупатели</a>
+                    </li>
+                  </ul>
+                </div>
+                <!-- COUPON CATEGORY MENU -->
+                <div class="category">
+                  <div class="category__header">купоны</div>
+                  <ul>
+                    <li class="user">
+                      <a href="#" class="couponsell-btn"><i class="fa fa-user-plus"></i>Продавцов
+                        <span class="fa fa-caret-down fourth"></a>
+                      <ul class="couponsell-show">
+                        <li class="subcategory"><a href="#"><i class="fa fa-plus"></i>Добавить</a></li>
+                        <li class="subcategory"><a href="#"><i class="fa fa-pencil"></i>Изменить</a></li>
+                        <li class="subcategory"><a href="#"><i class="fa fa-times"></i>Удалить</a></li>
+                      </ul>
+                    </li>
+                    <li class="user">
+                      <a href="#" class="couponbuy-btn"><i class="fa fa-users"></i>Покупателей
+                        <span class="fa fa-caret-down fifth"></a>
+                      <ul class="couponbuy-show">
+                        <li class="subcategory"><a href="#"><i class="fa fa-plus"></i>Добавить</a></li>
+                        <li class="subcategory"><a href="#"><i class="fa fa-pencil"></i>Изменить</a></li>
+                        <li class="subcategory"><a href="#"><i class="fa fa-times"></i>Удалить</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+                <!-- WEBSITEDEV CATEGORY MENU -->
+                <div class="category">
+                  <div class="category__header">вебсайт</div>
+                  <ul>
+                    <li class="user">
+                      <a href="#" class="shapka-btn"><i class="fa fa-list-alt"></i>Шапка сайта
+                        <span class="fa fa-caret-down sixth"></a>
+                      <ul class="shapka-show">
+                        <li class="subcategory"><a href="#"><i class="fa fa-circle"></i>Логотип</a></li>
+                        <li class="subcategory"><a href="#"><i class="fa fa-circle"></i>Меню</a></li>
+                        <li class="subcategory"><a href="#"><i class="fa fa-circle"></i>Страницы</a></li>
+                      </ul>
+                    </li>
+                    <li class="user">
+                      <a href="#" class="sidenav-btn"><i class="fa fa-window-restore"></i>Боковая навигация
+                        <span class="fa fa-caret-down seventh"></a>
+                      <ul class="sidenav-show">
+                        <li class="subcategory"><a href="#"><i class="fa fa-circle"></i>Блоки</a></li>
+                        <li class="subcategory"><a href="#"><i class="fa fa-circle"></i>Меню</a></li>
+                      </ul>
+                    </li>
+                    <li class="user">
+                      <a href="#"><i class="fa fa-picture-o"></i>Главный слайдер</a>
+                      
+                    </li>
+                    <li class="user">
+                      <a href="#" class="coupondev-btn"><i class="fa fa-wpforms"></i>Купоны
+                        <span class="fa fa-caret-down eighth"></a>
+                      <ul class="coupondev-show">
+                        <li class="subcategory"><a href="#"><i class="fa fa-circle"></i>Блок рекомендуемое</a></li>
+                        <li class="subcategory"><a href="#"><i class="fa fa-circle"></i>Блок за неделю</a></li>
+                        <li class="subcategory"><a href="#"><i class="fa fa-circle"></i>Модальное окно</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+              </nav>  
+            </aside>
+          </div>
+          <div class="col-md-9">
+            <div class="adminlist">
+              <div class="adminlist_header">
+                <h3 class="adminlist__title">Список администраторов</h3>
+                <div class="adminlist__tools">
+                  <button type="button" data-modal="registration" class="btnlist btnlist-add">
+                    <i class="fa fa-plus"></i>
+                  </button>
+                  <button type="button" class="btnlist btnlist-edit">
+                    <i class="fa fa-pencil"></i>
+                  </button>
+                  <button type="button" class="btnlist btnlist-remove">
+                    <i class="fa fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <!-- /AMINISTRATORs LIST card-header -->
+              <div class="adminlist__body">
+                <div class="adminlist__table">
+                  <table class="tableinfo">
+                    <thead>
+                    <tr>
+                      <th></th>
+                      <th>ID</th>
+                      <th>Имя</th>
+                      <th>Статус</th>
+                      <th>Логин</th>
+                      <th>Пароль</th>
+                      <th>Телефон</th>
+                      <th>Email</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                      <td><input type="radio"></td>
+                      <td><span>OR9842</span></td>
+                      <td><div class="status">Бек Орипов IV</div></td>
+                      <td><div class="status">Супер админ</div></td>
+                      <td><div class="adminlogin">bekasir</div></td>
+                      <td><div class="admpsw">bekasir</div></td>
+                      <td><div class="admtel">918240005</div></td>
+                      <td><div class="admemail">ulugbekjon@list.ru</div></td>
+                    </tr>
+                    <tr>
+                      <td><input type="radio"></td>
+                      <td><span>OR7429</span></td>
+                      <td>Бек Орипов  TV</td>
+                      <td><span class="adminstatus">Админ</span></td>
+                      <td><div class="adminlogin">bekasir</div></td>
+                      <td><div class="admpsw">bekasir</div></td>
+                      <td><div class="admtel">918240005</div></td>
+                      <td><div class="admemail">ulugbekjon@list.ru</div></td>
+                    </tr>
+                    <tr>
+                      <td><input type="radio"></td>
+                      <td><span>OR7429</span></td>
+                      <td>Бек Орипов  TV</td>
+                      <td><span class="adminstatus">Админ</span></td>
+                      <td><div class="adminlogin">bekasir</div></td>
+                      <td><div class="admpsw">bekasir</div></td>
+                      <td><div class="admtel">918240005</div></td>
+                      <td><div class="admemail">ulugbekjon@list.ru</div></td>
+                    </tr>
+                    <tr>
+                      <td><input type="radio"></td>
+                      <td><span>OR7429</span></td>
+                      <td>Бек Орипов  TV</td>
+                      <td><span class="adminstatus">Админ</span></td>
+                      <td><div class="adminlogin">bekasir</div></td>
+                      <td><div class="admpsw">bekasir</div></td>
+                      <td><div class="admtel">918240005</div></td>
+                      <td><div class="admemail">ulugbekjon@list.ru</div></td>
+                    </tr>
+                    <tr>
+                      <td><input type="radio"></td>
+                      <td><span>OR7429</span></td>
+                      <td>Бек Орипов  TV</td>
+                      <td><span class="adminstatus">Админ</span></td>
+                      <td><div class="adminlogin">bekasir</div></td>
+                      <td><div class="admpsw">bekasir</div></td>
+                      <td><div class="admtel">918240005</div></td>
+                      <td><div class="admemail">ulugbekjon@list.ru</div></td>
+                    </tr>
+                    <tr>
+                      <td><input type="radio"></td>
+                      <td><span>OR7429</span></td>
+                      <td>Бек Орипов  TV</td>
+                      <td><span class="adminstatus">Админ</span></td>
+                      <td><div class="adminlogin">bekasir</div></td>
+                      <td><div class="admpsw">bekasir</div></td>
+                      <td><div class="admtel">918240005</div></td>
+                      <td><div class="admemail">ulugbekjon@list.ru</div></td>
+                    </tr>
+                    <tr>
+                      <td><input type="radio"></td>
+                      <td><span>OR7429</span></td>
+                      <td>Бек Орипов  TV</td>
+                      <td><span class="adminstatus">Админ</span></td>
+                      <td><div class="adminlogin">bekasir</div></td>
+                      <td><div class="admpsw">bekasir</div></td>
+                      <td><div class="admtel">918240005</div></td>
+                      <td><div class="admemail">ulugbekjon@list.ru</div></td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    
+    <!-- MODAL BLOCK -->
+    <!-- MODAL OVERLAY -->
+    <div class="overlay">
+      <!-- REGISTRATION MODAL -->
+      <div class="container-fluid">
+        <div class="modal modal__registration" id="registration">
+            <i class="fa fa-edit dialog-icon"></i>
+            <div class="modal__close">×</div>
+            <div class="modal__subtitle">Новый администратор</div>
+            <h5>Пожалуйста, заполните все поля</h5>
+            <form class="dialog-form">
+                <div class="form-group">
+                  <label for="firstName">Имя</label>
+                  <input name="name" id="firstName" placeholder="Введите имя" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="lastName">Фамилия</label>
+                  <input name="lastname" id="lastName" placeholder="Введите фамилию" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Телефон</label>
+                    <input name="phone" id="phone" maxlength="9" placeholder="Введите телефон" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="login">Логин</label>
+                  <input name="login" id="login" placeholder="Введите логин" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Пароль</label>
+                    <input name="password" type="password" placeholder="Введите пароль" class="form-control" id="password">
+                </div>
+                <div class="form-group">
+                    <label for="repassword">Повторите пароль</label>
+                    <input name="repassword" id="repassword" type="password" placeholder="Введите пароль еще раз" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input name="email" id="email" type="text" placeholder="email@domain.com" class="form-control">
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input name="checkbox" type="checkbox">Админ
+                    </label>
+                    <label>
+                      <input name="checkbox" type="checkbox">Супер админ
+                  </label>
+                </div>
+                <input type="submit" id="addBtn" value="Добавить" class="modal__button">
+            </form>
+        </div>
+        <div class="modal modal__editdone" id="editdone">
+          <div class="modal__close">×</div>
+          <div class="modal__subtitle modal__subtitle-editdone">Администратор добавлен</div>
+      </div>
+      </div>
+    </div>
+    <!-- Firebase -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-database.js"></script>
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyDSK4A6CxtLSoK-YcO8rGLhzdKs9XU7PLs",
+        authDomain: "coupon-a7d51.firebaseapp.com",
+        databaseURL: "https://coupon-a7d51.firebaseio.com",
+        projectId: "coupon-a7d51",
+        storageBucket: "coupon-a7d51.appspot.com",
+        messagingSenderId: "972971074512",
+        appId: "1:972971074512:web:6e8e33059b2bd59c128fd5"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+    </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/jquery.maskedinput.min.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/addremovefunc.js"></script>
+  </body>
+</html>
