@@ -143,12 +143,12 @@
           <div class="col-md-9">
             <div class="adminlist">
               <div class="adminlist_header">
-                <h3 class="adminlist__title">Список администраторов</h3>
+                <div class="adminlist__title">Список администраторов</div>
                 <div class="adminlist__tools">
                   <button type="button" data-modal="registration" class="btnlist btnlist-add">
                     <i class="fa fa-plus"></i>
                   </button>
-                  <button type="button" class="btnlist btnlist-edit">
+                  <button type="button" id="btnEdit" class="btnlist btnlist-edit">
                     <i class="fa fa-pencil"></i>
                   </button>
                   <button type="button" class="btnlist btnlist-remove">
@@ -172,77 +172,7 @@
                       <th>Email</th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <tr>
-                      <td><input type="radio"></td>
-                      <td><span>OR9842</span></td>
-                      <td><div class="status">Бек Орипов IV</div></td>
-                      <td><div class="status">Супер админ</div></td>
-                      <td><div class="adminlogin">bekasir</div></td>
-                      <td><div class="admpsw">bekasir</div></td>
-                      <td><div class="admtel">918240005</div></td>
-                      <td><div class="admemail">ulugbekjon@list.ru</div></td>
-                    </tr>
-                    <tr>
-                      <td><input type="radio"></td>
-                      <td><span>OR7429</span></td>
-                      <td>Бек Орипов  TV</td>
-                      <td><span class="adminstatus">Админ</span></td>
-                      <td><div class="adminlogin">bekasir</div></td>
-                      <td><div class="admpsw">bekasir</div></td>
-                      <td><div class="admtel">918240005</div></td>
-                      <td><div class="admemail">ulugbekjon@list.ru</div></td>
-                    </tr>
-                    <tr>
-                      <td><input type="radio"></td>
-                      <td><span>OR7429</span></td>
-                      <td>Бек Орипов  TV</td>
-                      <td><span class="adminstatus">Админ</span></td>
-                      <td><div class="adminlogin">bekasir</div></td>
-                      <td><div class="admpsw">bekasir</div></td>
-                      <td><div class="admtel">918240005</div></td>
-                      <td><div class="admemail">ulugbekjon@list.ru</div></td>
-                    </tr>
-                    <tr>
-                      <td><input type="radio"></td>
-                      <td><span>OR7429</span></td>
-                      <td>Бек Орипов  TV</td>
-                      <td><span class="adminstatus">Админ</span></td>
-                      <td><div class="adminlogin">bekasir</div></td>
-                      <td><div class="admpsw">bekasir</div></td>
-                      <td><div class="admtel">918240005</div></td>
-                      <td><div class="admemail">ulugbekjon@list.ru</div></td>
-                    </tr>
-                    <tr>
-                      <td><input type="radio"></td>
-                      <td><span>OR7429</span></td>
-                      <td>Бек Орипов  TV</td>
-                      <td><span class="adminstatus">Админ</span></td>
-                      <td><div class="adminlogin">bekasir</div></td>
-                      <td><div class="admpsw">bekasir</div></td>
-                      <td><div class="admtel">918240005</div></td>
-                      <td><div class="admemail">ulugbekjon@list.ru</div></td>
-                    </tr>
-                    <tr>
-                      <td><input type="radio"></td>
-                      <td><span>OR7429</span></td>
-                      <td>Бек Орипов  TV</td>
-                      <td><span class="adminstatus">Админ</span></td>
-                      <td><div class="adminlogin">bekasir</div></td>
-                      <td><div class="admpsw">bekasir</div></td>
-                      <td><div class="admtel">918240005</div></td>
-                      <td><div class="admemail">ulugbekjon@list.ru</div></td>
-                    </tr>
-                    <tr>
-                      <td><input type="radio"></td>
-                      <td><span>OR7429</span></td>
-                      <td>Бек Орипов  TV</td>
-                      <td><span class="adminstatus">Админ</span></td>
-                      <td><div class="adminlogin">bekasir</div></td>
-                      <td><div class="admpsw">bekasir</div></td>
-                      <td><div class="admtel">918240005</div></td>
-                      <td><div class="admemail">ulugbekjon@list.ru</div></td>
-                    </tr>
+                    <tbody class="tbody">
                     </tbody>
                   </table>
                 </div>
@@ -269,10 +199,6 @@
                   <input name="name" id="firstName" placeholder="Введите имя" class="form-control">
                 </div>
                 <div class="form-group">
-                  <label for="lastName">Фамилия</label>
-                  <input name="lastname" id="lastName" placeholder="Введите фамилию" class="form-control">
-                </div>
-                <div class="form-group">
                     <label for="phone">Телефон</label>
                     <input name="phone" id="phone" maxlength="9" placeholder="Введите телефон" class="form-control">
                 </div>
@@ -293,12 +219,10 @@
                     <input name="email" id="email" type="text" placeholder="email@domain.com" class="form-control">
                 </div>
                 <div class="checkbox">
-                    <label>
-                        <input name="checkbox" type="checkbox">Админ
+                    <label id="radioLabel">
+                      <input name="checkbox" class="radiobutton" value="Admin" type="radio">Админ
+                      <input name="checkbox" class="radiobutton" value="Super Admin" type="radio">Супер админ
                     </label>
-                    <label>
-                      <input name="checkbox" type="checkbox">Супер админ
-                  </label>
                 </div>
                 <input type="submit" id="addBtn" value="Добавить" class="modal__button">
             </form>

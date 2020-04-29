@@ -49,4 +49,6 @@ $(document).ready(function(){
    $(this).find('label.error').hide();
    $(".error").removeClass("error");
  }); 
+
+ 
 });

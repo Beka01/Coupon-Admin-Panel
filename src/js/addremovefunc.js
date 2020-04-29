@@ -1,28 +1,27 @@
 'use sctrict';
 $(document).ready(function(){
-    //GET INPUT VALUES FROM FORM TO SEND TO FIREBASE DATABASE
+  let admStatus={};
+    //GET INPUT VALUES FROM FORM TO prepare SEND TO FIREBASE DATABASE
     const firstName = document.getElementById('firstName');
-    const lastName = document.getElementById('lastName');
+    $(".radiobutton").click(function(){
+      admStatus = $("input:radio[name=checkbox]:checked").val();
+      console.log(admStatus);
+    });
     const phone = document.getElementById('phone');
     const login = document.getElementById('login');
     const password = document.getElementById('password');
     const email = document.getElementById('email');
     const addBtn = document.getElementById('addBtn');
+    const adminBtn = document.getElementById('firedata');
     
     const database = firebase.database();
     const rootRef = database.ref('admins');
-
     
-
   // FORMS VALIDATION
   function validateForms(form){
     $(form).validate({
       rules: {
         name: {
-          required: true,
-          minlength: 2
-        },
-        lastname: {
           required: true,
           minlength: 2
         },
@@ -55,10 +54,6 @@ $(document).ready(function(){
           required: "Укажите свое имя",
           minlength: "Слишком короткое имя"
         },
-        lastname: {
-          required: "Укажите свою фамилию",
-          minlength: "Слишком короткая фамилия"
-        },
         login: {
           required: "Укажите имя пользователя",
           minlength: "Слишком короткое имя"
@@ -90,27 +85,64 @@ $(document).ready(function(){
     //CHECKING FORM BEFORE SEND TO FIREBASE
     addBtn.addEventListener('click',(e) => {
         const fnLen = firstName.value.length;
-        const lnLen = lastName.value.length;
         const phLen = phone.value.length;
         const logLen = login.value.length;
         const passLen = password.value.length;
         const emLen = email.value.length;
-        if(fnLen==0 || lnLen==0 || phLen==0 || logLen==0 || passLen==0 || emLen==0){
+        if(fnLen==0 || phLen==0 || logLen==0 || passLen==0 || emLen==0 ){
             validateForms('#registration form');
         }else {
+          //WRITE DATA TO FIREBASE
             e.preventDefault();
             const autoId =rootRef.push().key;
             rootRef.child(autoId).set({
             first_name: firstName.value,
-            last_name: lastName.value,
+            statusIs: admStatus,
             phone: phone.value,
             login: login.value,
             password: password.value,
             email: email.value
         });
+        
         $('#registration').fadeOut();
         $('.overlay, #editdone').fadeIn('slow');
         $('#registration').trigger('reset');
         } 
     });
+
+    adminBtn.addEventListener('click', (e) =>{
+        getdata();
+    });
+    //GET ADMINS DATA FROM FIREBASE AND PUT TO THE TABLE
+    function getdata() {
+      $(".tbody").empty();
+      const userDataRef = firebase.database().ref("admins").orderByKey();
+      userDataRef.once("value").then(function(snapshot) {
+      snapshot.forEach(function(childSnapshot) {
+      const key = childSnapshot.key;
+      const childData = childSnapshot.val(); 
+      
+      $(".tbody").append(`
+        <tr>
+          <td ><input type="radio" data-fname="${childData.first_name}" 
+          data-status="${childData.statusIs}" data-login="${childData.login}"
+          data-password="${childData.password}" data-phone="${childData.phone}" 
+          data-email="${childData.email}" name="adminselected" class="checkbox"></td>
+          <td ><span>${key}</span></td>
+          <td><div class="admfirstname">${childData.first_name}</div></td>
+          <td><div class="adminStatus">${childData.statusIs}</div></td>
+          <td><div class="adminlogin">${childData.login}</div></td>
+          <td><div class="admpsw">${childData.password}</div></td>
+          <td><div class="admtel">${childData.phone}</div></td>
+          <td><div class="admemail">${childData.email}</div></td>
+        </tr>
+      `);
+      });
+    });
+  }
+  $("#btnEdit").click(function(event){
+    event.preventDefault();
+    const getData = $(".tbody .checkbox:checked");
+    console.log(getData.data('fname'), getData.data('status'), getData.data('login'));
+  });
 });
