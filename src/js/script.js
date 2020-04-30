@@ -41,14 +41,21 @@ $(document).ready(function(){
  $('[data-modal=registration]').on('click', () => {
    $('.overlay, #registration').fadeIn('slow');
  });
+ //EDIT BLOCK
+ $('[data-modal=edit]').on('click', () => {
+   $('.overlay, #editModal').fadeIn('slow');
+ });
  //MODAL CLOSE BUTTON
  $('.modal__close').on('click', () => {
-   $('.overlay, #editdone').fadeOut('fast');
    $('.overlay, #registration').fadeOut('fast');
    $(this).find('.dialog-form').trigger('reset');
    $(this).find('label.error').hide();
    $(".error").removeClass("error");
  }); 
-
- 
+ $('.modal__close').on('click', () => {
+   $('.overlay, #editdone').fadeOut('fast');
+   $(this).find('.dialog-form').trigger('reset');
+   $(this).find('label.error').hide();
+   $(".error").removeClass("error");
+ }); 
 });

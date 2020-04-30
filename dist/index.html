@@ -148,7 +148,7 @@
                   <button type="button" data-modal="registration" class="btnlist btnlist-add">
                     <i class="fa fa-plus"></i>
                   </button>
-                  <button type="button" id="btnEdit" class="btnlist btnlist-edit">
+                  <button type="button" id="btnEdit" data-modal="edit" class="btnlist btnlist-edit">
                     <i class="fa fa-pencil"></i>
                   </button>
                   <button type="button" class="btnlist btnlist-remove">
@@ -220,7 +220,7 @@
                 </div>
                 <div class="checkbox">
                     <label id="radioLabel">
-                      <input name="checkbox" class="radiobutton" value="Admin" type="radio">Админ
+                      <input name="checkbox" class="radiobutton" value="Admin" type="radio" checked="checked">Админ
                       <input name="checkbox" class="radiobutton" value="Super Admin" type="radio">Супер админ
                     </label>
                 </div>
@@ -231,6 +231,40 @@
           <div class="modal__close">×</div>
           <div class="modal__subtitle modal__subtitle-editdone">Администратор добавлен</div>
       </div>
+      <div class="modal modal__edit" id="editModal">
+        <i class="fa fa-edit dialog-icon"></i>
+        <div class="modal__close">×</div>
+        <div class="modal__subtitle">Изменить</div>
+        <h5>Пожалуйста, внесите изменения</h5>
+        <form class="dialog-form">
+            <div class="form-group">
+              <label for="firstName">Имя</label>
+              <input name="name" id="edtfirstName" placeholder="Введите имя" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="phone">Телефон</label>
+                <input name="phone" id="edtphone" maxlength="9" placeholder="Введите телефон" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="login">Логин</label>
+              <input name="login" id="edtlogin" placeholder="Введите логин" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Пароль</label>
+                <input name="password" type="password" placeholder="Введите пароль" class="form-control" id="edtpassword">
+            </div>
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input name="email" id="edtemail" type="text" placeholder="email@domain.com" class="form-control">
+            </div>
+            <div class="checkbox">
+              <label><input name="checkbox" class="radiobutton" value="Admin" type="radio">Админ</label>
+
+              <label><input name="checkbox" class="radiobutton" value="Super Admin" type="radio">Супер админ</label>
+            </div>
+            <input type="submit" id="editdoneBtn" value="Изменить" class="modal__button">
+        </form>
+    </div>
       </div>
     </div>
     <!-- Firebase -->

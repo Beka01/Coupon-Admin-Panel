@@ -1,6 +1,7 @@
 'use sctrict';
 $(document).ready(function(){
   let admStatus={};
+  let childData={};
     //GET INPUT VALUES FROM FORM TO prepare SEND TO FIREBASE DATABASE
     const firstName = document.getElementById('firstName');
     $(".radiobutton").click(function(){
@@ -28,6 +29,7 @@ $(document).ready(function(){
         login: {
           required: true,
           minlength: 2
+          
         },
         phone: {
           required: true,
@@ -77,6 +79,7 @@ $(document).ready(function(){
         }
       }
     });
+    return $(form);
     }
     $.mask.definitions['9'] = '';
     $.mask.definitions.d = '[0-9]';
@@ -84,12 +87,7 @@ $(document).ready(function(){
     
     //CHECKING FORM BEFORE SEND TO FIREBASE
     addBtn.addEventListener('click',(e) => {
-        const fnLen = firstName.value.length;
-        const phLen = phone.value.length;
-        const logLen = login.value.length;
-        const passLen = password.value.length;
-        const emLen = email.value.length;
-        if(fnLen==0 || phLen==0 || logLen==0 || passLen==0 || emLen==0 ){
+        if (!validateForms('#registration form').valid()){
             validateForms('#registration form');
         }else {
           //WRITE DATA TO FIREBASE
@@ -120,7 +118,7 @@ $(document).ready(function(){
       userDataRef.once("value").then(function(snapshot) {
       snapshot.forEach(function(childSnapshot) {
       const key = childSnapshot.key;
-      const childData = childSnapshot.val(); 
+      childData = childSnapshot.val(); 
       
       $(".tbody").append(`
         <tr>
@@ -137,13 +135,22 @@ $(document).ready(function(){
           <td><div class="admemail">${childData.email}</div></td>
         </tr>
       `);
+      
       });
     });
   }
   $("#btnEdit").click(function(event){
-    $('.overlay, #registration').fadeIn('slow');
     event.preventDefault();
     const getData = $(".tbody .checkbox:checked");
-    console.log(getData.data('fname'), getData.data('status'), getData.data('login'));
+    $('#edtfirstName').val($('#edtfirstName').val() + getData.data('fname'));
+    $('#edtphone').val($('#edtphone').val() + getData.data('phone'));
+    $('#edtlogin').val($('#edtlogin').val() + getData.data('login'));
+    $('#edtpassword').val($('#edtpassword').val() + getData.data('password'));
+    $('#edtemail').val($('#edtemail').val() + getData.data('email'));
+    $(".radiobutton").attr("checked", false);
+    $(".radiobutton[value='"+getData.data('status')+"']").attr("checked", true);
+
+    //console.log(getData.data('status'));
+    
   });
 });
