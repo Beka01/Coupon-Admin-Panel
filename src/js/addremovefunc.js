@@ -4,7 +4,7 @@ $(document).ready(function(){
   let childData={};
   let key ={};
   //GET INPUT VALUES FROM FORM TO prepare SEND TO FIREBASE DATABASE
-  const firstName = document.getElementById('firstName');
+  const firstName = document.getElementsByClassName('firstName');
   $(".radiobutton").click(function(){
     admStatus = $("input:radio[name=checkbox]:checked").val();
     console.log(admStatus);
@@ -95,7 +95,7 @@ $(document).ready(function(){
         }else {
           //WRITE DATA TO FIREBASE
             e.preventDefault();
-            const autoId =rootRef.push().key;
+            const autoId = rootRef.push().key;
             rootRef.child(autoId).set({
             first_name: firstName.value,
             statusIs: admStatus,
@@ -126,10 +126,10 @@ $(document).ready(function(){
       
       $(".tbody").append(`
         <tr>
-          <td ><input type="radio" data-adminId="${key}" data-fname="${childData.first_name}" 
+          <td ><input type="radio" data-adminid="${key}" data-fname="${childData.first_name}" 
           data-status="${childData.statusIs}" data-login="${childData.login}"
           data-password="${childData.password}" data-phone="${childData.phone}" 
-          data-email="${childData.email}" name="adminselected" class="checkbox" ></td>
+          data-email="${childData.email}" name="adminselected" class="checkbox" checked></td>
           <td ><span>${key}</span></td>
           <td><div class="admfirstname">${childData.first_name}</div></td>
           <td><div class="adminStatus">${childData.statusIs}</div></td>
@@ -147,7 +147,7 @@ $(document).ready(function(){
   $("#btnEdit").click(function(event){
     event.preventDefault();
     const getData = $(".tbody .checkbox:checked");
-    getData.data("adminId");
+    getData.data("adminid");
     $('#edtfirstName').val($('#edtfirstName').val() + getData.data('fname'));
     $('#edtphone').val($('#edtphone').val() + getData.data('phone'));
     $('#edtlogin').val($('#edtlogin').val() + getData.data('login'));
@@ -155,23 +155,29 @@ $(document).ready(function(){
     $('#edtemail').val($('#edtemail').val() + getData.data('email'));
     $(".radiobutton").attr("checked", false);
     $(".radiobutton[value='"+getData.data('status')+"']").attr("checked", true);
-    console.log( getData.data("adminId"));
   });
-
-//   editDoneBtn.addEventListener('click',(e) => {
-//       //UPDATE DATA TO FIREBASE
-//         e.preventDefault();
-//         const newData = {
-//         first_name: firstName.value,
-        
-//         };
-//         const admkey=key;
-//         rootRef.child(admkey).update(newData);
-//         console.log(admkey);
-//     $('#registration').fadeOut();
-//     $('.overlay, #editdone').fadeIn('slow');
-//     $('#registration').trigger('reset');
-    
-// });
-   
+  //UPDATE DATA TO FIREBASE
+  editDoneBtn.addEventListener('click',(e) => {
+    const edtfirstName = document.getElementById('edtfirstName');
+    const edtphone = document.getElementById('edtphone');
+    const edtlogin = document.getElementById('edtlogin');
+    const edtpassword = document.getElementById('edtpassword');
+    const edtemail = document.getElementById('edtemail');
+    e.preventDefault();
+    const newData = {
+    first_name: edtfirstName.value,
+    statusIs: admStatus,
+    phone: edtphone.value,
+    login: edtlogin.value,
+    password: edtpassword.value,
+    email: edtemail.value
+    };
+    const admkey = $(".tbody .checkbox:checked").data('adminid');
+    rootRef.child(admkey).update(newData);
+    $('#editModal').fadeOut();
+    $('.overlay, #editdone').fadeIn('slow');
+    $('#donetext').text('Изменения внесены');
+    $('#editModal').trigger('reset');
+    getdata();
+});
 });
