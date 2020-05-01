@@ -49,7 +49,7 @@
     <main>
       <div class="container-fluid">
         <div class="row">
-          <div class="col-md-2">
+          <div class="col-lg-2 col-md-2 col-xs-2">
             <aside>
               <nav class="sidebar" id="style-6">
                 <!-- CURRENT ADMIN INFO -->
@@ -140,7 +140,7 @@
               </nav>  
             </aside>
           </div>
-          <div class="col-md-9">
+          <div class="col-lg-9 col-md-9 col-xs-9">
             <div class="adminlist">
               <div class="adminlist_header">
                 <div class="adminlist__title">Список администраторов</div>
@@ -148,7 +148,7 @@
                   <button type="button" data-modal="registration" class="btnlist btnlist-add">
                     <i class="fa fa-plus"></i>
                   </button>
-                  <button type="button" id="btnEdit" data-modal=edit class="btnlist btnlist-edit">
+                  <button type="button" id="btnEdit" data-modal="edit" class="btnlist btnlist-edit">
                     <i class="fa fa-pencil"></i>
                   </button>
                   <button type="button" class="btnlist btnlist-remove">
@@ -220,8 +220,8 @@
                 </div>
                 <div class="checkbox">
                     <label id="radioLabel">
-                      <input name="checkbox" class="radiobutton" value="Admin" type="radio" checked>Админ
-                      <input name="checkbox" class="radiobutton" value="Super Admin" type="radio" >Супер админ
+                      <label><input name="checkbox" class="radiobutton" value="Admin" type="radio">Админ</label>
+                      <label><input name="checkbox" class="radiobutton" value="Super Admin" type="radio" >Супер админ</label>
                     </label>
                 </div>
                 <input type="submit" id="addBtn" value="Добавить" class="modal__button">

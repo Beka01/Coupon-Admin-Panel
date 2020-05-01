@@ -2,21 +2,23 @@
 $(document).ready(function(){
   let admStatus={};
   let childData={};
-    //GET INPUT VALUES FROM FORM TO prepare SEND TO FIREBASE DATABASE
-    const firstName = document.getElementById('firstName');
-    $(".radiobutton").click(function(){
-      admStatus = $("input:radio[name=checkbox]:checked").val();
-      console.log(admStatus);
-    });
-    const phone = document.getElementById('phone');
-    const login = document.getElementById('login');
-    const password = document.getElementById('password');
-    const email = document.getElementById('email');
-    const addBtn = document.getElementById('addBtn');
-    const adminBtn = document.getElementById('firedata');
-    
-    const database = firebase.database();
-    const rootRef = database.ref('admins');
+  let key ={};
+  //GET INPUT VALUES FROM FORM TO prepare SEND TO FIREBASE DATABASE
+  const firstName = document.getElementById('firstName');
+  $(".radiobutton").click(function(){
+    admStatus = $("input:radio[name=checkbox]:checked").val();
+    console.log(admStatus);
+  });
+  const phone = document.getElementById('phone');
+  const login = document.getElementById('login');
+  const password = document.getElementById('password');
+  const email = document.getElementById('email');
+  const addBtn = document.getElementById('addBtn');
+  const editDoneBtn = document.getElementById('editdoneBtn');
+  const adminBtn = document.getElementById('firedata');
+  
+  const database = firebase.database();
+  const rootRef = database.ref('admins');
     
   // FORMS VALIDATION
   function validateForms(form){
@@ -73,6 +75,7 @@ $(document).ready(function(){
           required: "Повторите введенный пароль",
           equalTo: "Пароли не совпадают"
         },
+        checkbox:"*",
         email: {
           required: "Укажите свою электронную почту",
           email: "Неправильно введен адрес почты"
@@ -107,9 +110,10 @@ $(document).ready(function(){
         $('#registration').trigger('reset');
         } 
     });
-
+    $("#btnEdit").hide();
     adminBtn.addEventListener('click', (e) =>{
-        getdata();
+      $("#btnEdit").fadeIn("slow");
+      getdata();
     });
     //GET ADMINS DATA FROM FIREBASE AND PUT TO THE TABLE
     function getdata() {
@@ -117,15 +121,15 @@ $(document).ready(function(){
       const userDataRef = firebase.database().ref("admins").orderByKey();
       userDataRef.once("value").then(function(snapshot) {
       snapshot.forEach(function(childSnapshot) {
-      const key = childSnapshot.key;
+      key = childSnapshot.key;
       childData = childSnapshot.val(); 
       
       $(".tbody").append(`
         <tr>
-          <td ><input type="radio" data-fname="${childData.first_name}" 
+          <td ><input type="radio" data-adminId="${key}" data-fname="${childData.first_name}" 
           data-status="${childData.statusIs}" data-login="${childData.login}"
           data-password="${childData.password}" data-phone="${childData.phone}" 
-          data-email="${childData.email}" name="adminselected" class="checkbox"></td>
+          data-email="${childData.email}" name="adminselected" class="checkbox" ></td>
           <td ><span>${key}</span></td>
           <td><div class="admfirstname">${childData.first_name}</div></td>
           <td><div class="adminStatus">${childData.statusIs}</div></td>
@@ -139,9 +143,11 @@ $(document).ready(function(){
       });
     });
   }
+  //PUT DATA TO THE EDITOR MODAL
   $("#btnEdit").click(function(event){
     event.preventDefault();
     const getData = $(".tbody .checkbox:checked");
+    getData.data("adminId");
     $('#edtfirstName').val($('#edtfirstName').val() + getData.data('fname'));
     $('#edtphone').val($('#edtphone').val() + getData.data('phone'));
     $('#edtlogin').val($('#edtlogin').val() + getData.data('login'));
@@ -149,8 +155,23 @@ $(document).ready(function(){
     $('#edtemail').val($('#edtemail').val() + getData.data('email'));
     $(".radiobutton").attr("checked", false);
     $(".radiobutton[value='"+getData.data('status')+"']").attr("checked", true);
-
-    //console.log(getData.data('status'));
-    
+    console.log( getData.data("adminId"));
   });
+
+//   editDoneBtn.addEventListener('click',(e) => {
+//       //UPDATE DATA TO FIREBASE
+//         e.preventDefault();
+//         const newData = {
+//         first_name: firstName.value,
+        
+//         };
+//         const admkey=key;
+//         rootRef.child(admkey).update(newData);
+//         console.log(admkey);
+//     $('#registration').fadeOut();
+//     $('.overlay, #editdone').fadeIn('slow');
+//     $('#registration').trigger('reset');
+    
+// });
+   
 });

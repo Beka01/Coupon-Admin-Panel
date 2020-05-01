@@ -1,19 +1,6 @@
 'use strict';
 
 $(document).ready(function(){
-    //USERS CATEGORY DROP DOWN EFFECT
-//  $('.admin-btn').click(function() {
-//     $('nav ul .admin-show').toggleClass("show");
-//     $('nav ul .first').toggleClass("rotate");
-//  });
-//  $('.sell-btn').click(function() {
-//     $('nav ul .sell-show').toggleClass("show1");
-//     $('nav ul .second').toggleClass("rotate");
-//  });
-//  $('.buy-btn').click(function() {
-//     $('nav ul .buy-show').toggleClass("show2");
-//     $('nav ul .third').toggleClass("rotate");
-//  });
  //USERS CATEGORY DROP DOWN EFFECT
  $('.couponsell-btn').click(function() {
     $('nav ul .couponsell-show').toggleClass("show3");
@@ -47,13 +34,14 @@ $(document).ready(function(){
  });
  //MODAL CLOSE BUTTON
  $('.modal__close').on('click', () => {
-   $('.overlay, #registration').fadeOut('fast');
+   $('.overlay, #registration, #editdone').fadeOut('fast');
    $(this).find('.dialog-form').trigger('reset');
+   $('input:checkbox').removeAttr('checked');
    $(this).find('label.error').hide();
    $(".error").removeClass("error");
  }); 
  $('.modal__close').on('click', () => {
-   $('.overlay, #editdone').fadeOut('fast');
+   $('.overlay, #editModal').fadeOut('fast');
    $(this).find('.dialog-form').trigger('reset');
    $(this).find('label.error').hide();
    $(".error").removeClass("error");
