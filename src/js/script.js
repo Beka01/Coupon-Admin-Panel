@@ -26,24 +26,26 @@ $(document).ready(function(){
  //MODAL
  //REGISTRATION BLOCK
  $('[data-modal=registration]').on('click', () => {
+   $('#mdsubtitle').text('Новый администратор');
+   $('#repassword').show();
+   $('#editBtn').hide();
+   $('#addBtn').show();
    $('.overlay, #registration').fadeIn('slow');
  });
  //EDIT BLOCK
- $('[data-modal=edit]').on('click', () => {
-   $('.overlay, #editModal').fadeIn('slow');
- });
+//  $('[data-modal=edit]').on('click', () => {
+//    $('.overlay, #editModal').fadeIn('slow');
+//  });
  //MODAL CLOSE BUTTON
  $('.modal__close').on('click', () => {
    $('.overlay, #registration, #editdone').fadeOut('fast');
+   $('#yesBtn').fadeOut('fast');
+   $('#noBtn').fadeOut('fast');
    $(this).find('.dialog-form').trigger('reset');
    $('input:checkbox').removeAttr('checked');
    $(this).find('label.error').hide();
    $(".error").removeClass("error");
  }); 
- $('.modal__close').on('click', () => {
-   $('.overlay, #editModal').fadeOut('fast');
-   $(this).find('.dialog-form').trigger('reset');
-   $(this).find('label.error').hide();
-   $(".error").removeClass("error");
- }); 
+ 
+
 });

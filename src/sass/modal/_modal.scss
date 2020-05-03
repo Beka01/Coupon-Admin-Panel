@@ -56,6 +56,18 @@
             font-size: 13px;
         }
     }
+    &__removebtn {
+        width: 75px;
+        height: 40px;
+        border-radius: 3px;
+        background-color: $main-color;
+        border: none;
+        color: #fff;
+        font-size: 14px;
+        font-weight: 400;
+        
+        margin-top: 15px;
+    }
     &__subtitle {
         font-size: 22px;
         margin-top: 0;
@@ -147,11 +159,22 @@ h5 {
         margin-right: 10px;
     }
 }
-
+.btnswrapper {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 30px 0 30px;
+}
+#yesBtn {
+    background-color: #6ab04c;
+}
 
 #registration,
 #editdone,
-#editModal
+#yesBtn,
+#noBtn,
+#btnEdit,
+#btnRemove
+
  {
     display: none;
 }

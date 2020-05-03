@@ -1,10 +1,11 @@
 'use sctrict';
 $(document).ready(function(){
+  
   let admStatus={};
   let childData={};
   let key ={};
   //GET INPUT VALUES FROM FORM TO prepare SEND TO FIREBASE DATABASE
-  const firstName = document.getElementsByClassName('firstName');
+  const firstName = document.getElementById('firstName');
   $(".radiobutton").click(function(){
     admStatus = $("input:radio[name=checkbox]:checked").val();
     console.log(admStatus);
@@ -14,11 +15,15 @@ $(document).ready(function(){
   const password = document.getElementById('password');
   const email = document.getElementById('email');
   const addBtn = document.getElementById('addBtn');
-  const editDoneBtn = document.getElementById('editdoneBtn');
+  const editBtn = document.getElementById('editBtn');
   const adminBtn = document.getElementById('firedata');
   
   const database = firebase.database();
   const rootRef = database.ref('admins');
+  // if (rootRef == null){
+  //   $('#btnEdit').fadeOut('slow');
+  //   $('#btnRemove').fadeOut('slow');
+  // }
     
   // FORMS VALIDATION
   function validateForms(form){
@@ -90,31 +95,34 @@ $(document).ready(function(){
     
     //CHECKING FORM BEFORE SEND TO FIREBASE
     addBtn.addEventListener('click',(e) => {
+      
         if (!validateForms('#registration form').valid()){
             validateForms('#registration form');
         }else {
           //WRITE DATA TO FIREBASE
-            e.preventDefault();
-            const autoId = rootRef.push().key;
-            rootRef.child(autoId).set({
-            first_name: firstName.value,
-            statusIs: admStatus,
-            phone: phone.value,
-            login: login.value,
-            password: password.value,
-            email: email.value
+          e.preventDefault();
+          const autoId = rootRef.push().key;
+          rootRef.child(autoId).set({
+          first_name: firstName.value,
+          statusIs: admStatus,
+          phone: phone.value,
+          login: login.value,
+          password: password.value,
+          email: email.value
         });
-        
         $('#registration').fadeOut();
         $('.overlay, #editdone').fadeIn('slow');
+        $('#donetext').text('Администратор добавлен');
         $('#registration').trigger('reset');
+        getdata();
         } 
     });
-    $("#btnEdit").hide();
-    adminBtn.addEventListener('click', (e) =>{
-      $("#btnEdit").fadeIn("slow");
+      adminBtn.addEventListener('click', (e) =>{
       getdata();
+      $('#btnEdit').fadeIn('slow');
+      $('#btnRemove').fadeIn('slow');
     });
+    
     //GET ADMINS DATA FROM FIREBASE AND PUT TO THE TABLE
     function getdata() {
       $(".tbody").empty();
@@ -143,47 +151,61 @@ $(document).ready(function(){
       });
     });
   }
+  
   //PUT DATA TO THE EDITOR MODAL
   $("#btnEdit").click(function(event){
     event.preventDefault();
+    $('#mdsubtitle').text('Изменить');
+    $('#addBtn').hide();
+    $('#editBtn').show();
+    $('#repassword').hide();
+    $('.overlay, #registration').fadeIn('slow');
     const getData = $(".tbody .checkbox:checked");
     getData.data("adminid");
-    $('#edtfirstName').val($('#edtfirstName').val() + getData.data('fname'));
-    $('#edtphone').val($('#edtphone').val() + getData.data('phone'));
-    $('#edtlogin').val($('#edtlogin').val() + getData.data('login'));
-    $('#edtpassword').val($('#edtpassword').val() + getData.data('password'));
-    $('#edtemail').val($('#edtemail').val() + getData.data('email'));
+    $('#firstName').val($('#firstName').val() + getData.data('fname'));
+    $('#phone').val($('#phone').val() + getData.data('phone'));
+    $('#login').val($('#login').val() + getData.data('login'));
+    $('#password').val($('#password').val() + getData.data('password'));
+    $('#email').val($('#email').val() + getData.data('email'));
     $(".radiobutton").attr("checked", false);
     $(".radiobutton[value='"+getData.data('status')+"']").attr("checked", true);
   });
-
-  editDoneBtn.addEventListener('click',(e) => {
-    const edtfirstName = document.getElementById('edtfirstName');
-    const edtphone = document.getElementById('edtphone');
-    const edtlogin = document.getElementById('edtlogin');
-    const edtpassword = document.getElementById('edtpassword');
-    const edtemail = document.getElementById('edtemail');
-    $(".radiobutton").click(function(){
-      admStatus = $("input:radio[name=checkbox]:checked").val();
-      console.log(admStatus);
+  //UPDATE DATA TO FIREBASE
+    editBtn.addEventListener('click',(e) => {
+      if (!validateForms('#registration form').valid()){
+        validateForms('#registration form');
+    }else {
+      e.preventDefault();
+    const newData = {
+      first_name: firstName.value,
+      statusIs: admStatus,
+      phone: phone.value,
+      login: login.value,
+      password: password.value,
+      email: email.value
+    };
+    const admkey = $(".tbody .checkbox:checked").data('adminid');
+    rootRef.child(admkey).update(newData);
+    $('#registration').fadeOut();
+    $('.overlay, #editdone').fadeIn('slow');
+    $('#donetext').text('Изменения внесены');
+    $('#registration').trigger('reset');
+    getdata();
+    }
+  });
+  //REMOVE DATA FROM FIREBASE
+  $('#btnRemove').click(function(){
+    $('.overlay, #editdone').fadeIn('slow');
+    $('#donetext').text('Подтвердите удаление');
+    $('#yesBtn').show();
+    $('#noBtn').show();
+    $('#yesBtn').click(function(){
+      const remadmkey = $(".tbody .checkbox:checked").data('adminid');
+      rootRef.child(remadmkey).remove();
+      $('.overlay, #editdone').fadeOut('slow');
+      getdata();
     });
-
-      //UPDATE DATA TO FIREBASE
-        e.preventDefault();
-        const newData = {
-        first_name: edtfirstName.value,
-        statusIs: admStatus,
-        phone: edtphone.value,
-        login: edtlogin.value,
-        password: edtpassword.value,
-        email: edtemail.value
-        };
-        const admkey = $(".tbody .checkbox:checked").data('adminid');
-        rootRef.child(admkey).update(newData);
-        $('#editModal').fadeOut();
-        $('.overlay, #editdone').fadeIn('slow');
-        $('#donetext').text('Изменения внесены');
-        $('#editModal').trigger('reset');
-        getdata();
-});
+  });
+  $('#sellerTable').DataTable();
+  $('#tableAdmins').DataTable('.tbody');
 });
