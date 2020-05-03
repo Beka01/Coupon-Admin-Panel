@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Document</title>
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="css/style.min.css">
 </head>
@@ -148,10 +149,10 @@
                   <button type="button" data-modal="registration" class="btnlist btnlist-add">
                     <i class="fa fa-plus"></i>
                   </button>
-                  <button type="button" id="btnEdit" data-modal="edit" class="btnlist btnlist-edit">
+                  <button type="button" id="btnEdit" class="btnlist btnlist-edit">
                     <i class="fa fa-pencil"></i>
                   </button>
-                  <button type="button" class="btnlist btnlist-remove">
+                  <button type="button" id="btnRemove" class="btnlist btnlist-remove">
                     <i class="fa fa-times"></i>
                   </button>
                 </div>
@@ -159,7 +160,7 @@
               <!-- /AMINISTRATORs LIST card-header -->
               <div class="adminlist__body">
                 <div class="adminlist__table">
-                  <table class="tableinfo">
+                  <table class="tableinfo" id="tableAdmins">
                     <thead>
                     <tr>
                       <th></th>
@@ -191,7 +192,7 @@
         <div class="modal modal__registration" id="registration">
             <i class="fa fa-edit dialog-icon"></i>
             <div class="modal__close">×</div>
-            <div class="modal__subtitle">Новый администратор</div>
+            <div class="modal__subtitle" id="mdsubtitle">Новый администратор</div>
             <h5>Пожалуйста, заполните все поля</h5>
             <form class="dialog-form">
                 <div class="form-group">
@@ -210,9 +211,9 @@
                     <label>Пароль</label>
                     <input name="password" type="password" placeholder="Введите пароль" class="form-control" id="password">
                 </div>
-                <div class="form-group">
+                <div class="form-group" id="repassword">
                     <label for="repassword">Повторите пароль</label>
-                    <input name="repassword" id="repassword" type="password" placeholder="Введите пароль еще раз" class="form-control">
+                    <input name="repassword" type="password" placeholder="Введите пароль еще раз" class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="email">E-mail</label>
@@ -225,46 +226,17 @@
                     </label>
                 </div>
                 <input type="submit" id="addBtn" value="Добавить" class="modal__button">
+                <input type="submit" id="editBtn" value="Изменить" class="modal__button">
             </form>
         </div>
         <div class="modal modal__editdone" id="editdone">
           <div class="modal__close">×</div>
           <div class="modal__subtitle modal__subtitle-editdone" id="donetext">Администратор добавлен</div>
-      </div>
-      <div class="modal modal__edit" id="editModal">
-        <i class="fa fa-edit dialog-icon"></i>
-        <div class="modal__close">×</div>
-        <div class="modal__subtitle">Изменить</div>
-        <h5>Пожалуйста, внесите изменения</h5>
-        <form class="dialog-form">
-            <div class="form-group">
-              <label for="firstName">Имя</label>
-              <input name="name" id="edtfirstName" placeholder="Введите имя" class="form-control">
+            <div class="btnswrapper">
+              <input type="submit" id="yesBtn" value="Удалить" class="modal__removebtn">
+              <input type="submit" id="noBtn" value="Отмена" class="modal__removebtn">
             </div>
-            <div class="form-group">
-                <label for="phone">Телефон</label>
-                <input name="phone" id="edtphone" maxlength="9" placeholder="Введите телефон" class="form-control">
-            </div>
-            <div class="form-group">
-              <label for="login">Логин</label>
-              <input name="login" id="edtlogin" placeholder="Введите логин" class="form-control">
-            </div>
-            <div class="form-group">
-                <label>Пароль</label>
-                <input name="password" type="text" placeholder="Введите пароль" class="form-control" id="edtpassword">
-            </div>
-            <div class="form-group">
-                <label for="email">E-mail</label>
-                <input name="email" id="edtemail" type="text" placeholder="email@domain.com" class="form-control">
-            </div>
-            <div class="checkbox">
-              <label><input name="checkbox" class="radiobutton" value="Admin" type="radio">Админ</label>
-
-              <label><input name="checkbox" class="radiobutton" value="Super Admin" type="radio">Супер админ</label>
-            </div>
-            <input type="submit" id="editdoneBtn" value="Изменить" class="modal__button">
-        </form>
-    </div>
+        </div>
       </div>
     </div>
     <!-- Firebase -->
@@ -287,6 +259,7 @@
     </script>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <script src="js/jquery.validate.min.js"></script>
     <script src="js/jquery.maskedinput.min.js"></script>
     <script src="js/script.js"></script>
