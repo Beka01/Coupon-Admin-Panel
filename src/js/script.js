@@ -1,6 +1,7 @@
 'use strict';
-
+ 
 $(document).ready(function(){
+  
  //USERS CATEGORY DROP DOWN EFFECT
  $('.couponsell-btn').click(function() {
     $('nav ul .couponsell-show').toggleClass("show3");
@@ -24,18 +25,10 @@ $(document).ready(function(){
     $('nav ul .eighth').toggleClass("rotate");
  });
  //MODAL
- //REGISTRATION BLOCK
- $('[data-modal=registration]').on('click', () => {
-   $('#mdsubtitle').text('Новый администратор');
-   $('#repassword').show();
-   $('#editBtn').hide();
-   $('#addBtn').show();
-   $('.overlay, #registration').fadeIn('slow');
- });
- //EDIT BLOCK
-//  $('[data-modal=edit]').on('click', () => {
-//    $('.overlay, #editModal').fadeIn('slow');
-//  });
+ 
+});
+//REGISTRATION BLOCK
+
  //MODAL CLOSE BUTTON
  $('.modal__close').on('click', () => {
    $('.overlay, #registration, #editdone').fadeOut('fast');
@@ -46,6 +39,3 @@ $(document).ready(function(){
    $(this).find('label.error').hide();
    $(".error").removeClass("error");
  }); 
- 
-
-});

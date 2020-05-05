@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Document</title>
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="css/style.min.css">
 </head>
   <body>
@@ -160,10 +159,9 @@
               <!-- /AMINISTRATORs LIST card-header -->
               <div class="adminlist__body">
                 <div class="adminlist__table">
-                  <table class="tableinfo" id="tableAdmins">
+                  <table class="display" style="width:100%" id="tableAdmins">
                     <thead>
                     <tr>
-                      <th></th>
                       <th>ID</th>
                       <th>Имя</th>
                       <th>Статус</th>
@@ -243,23 +241,9 @@
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-database.js"></script>
-    <script>
-      // Your web app's Firebase configuration
-      var firebaseConfig = {
-        apiKey: "AIzaSyDSK4A6CxtLSoK-YcO8rGLhzdKs9XU7PLs",
-        authDomain: "coupon-a7d51.firebaseapp.com",
-        databaseURL: "https://coupon-a7d51.firebaseio.com",
-        projectId: "coupon-a7d51",
-        storageBucket: "coupon-a7d51.appspot.com",
-        messagingSenderId: "972971074512",
-        appId: "1:972971074512:web:6e8e33059b2bd59c128fd5"
-      };
-      // Initialize Firebase
-      firebase.initializeApp(firebaseConfig);
-    </script>
-    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
     <script src="js/jquery.validate.min.js"></script>
     <script src="js/jquery.maskedinput.min.js"></script>
     <script src="js/script.js"></script>
