@@ -15,15 +15,11 @@ $(document).ready(function(){
   firebase.initializeApp(firebaseConfig);
   
   //GET INPUT VALUES FROM FORM TO prepare SEND TO FIREBASE DATABASE
-  let admStatus={};
+  
   let childData={};
   let key ={};
 
   const firstName = document.getElementById('firstName');
-  $(".radiobutton").click(function(){
-    admStatus = $("input:radio[name=checkbox]:checked").val();
-    console.log(admStatus);
-  });
   const phone = document.getElementById('phone');
   const login = document.getElementById('login');
   const password = document.getElementById('password');
@@ -103,7 +99,7 @@ $(document).ready(function(){
     $('input[name=phone]').mask("+992 (dd) ddd-dd-dd");
 
     $('[data-modal=registration]').on('click', () => {
-      $('#registration').trigger('reset');
+      $('#registration form').trigger('reset');
       $('#mdsubtitle').text('Новый администратор');
       $('#repassword').show();
       $('#editBtn').hide();
@@ -121,16 +117,16 @@ $(document).ready(function(){
         const autoId = rootRef.push().key;
         rootRef.child(autoId).set({
         first_name: firstName.value,
-        statusIs: admStatus,
+        statusIs: $("input:radio[name=checkbox]:checked").val(),
         phone: phone.value,
         login: login.value,
         password: password.value,
         email: email.value
       });
+      $('#registration form').trigger('reset');
       $('#registration').fadeOut();
       $('.overlay, #editdone').fadeIn('slow');
       $('#donetext').text('Администратор добавлен');
-      $('#registration')[0].reset();
       getdata();
       } 
     });
@@ -165,22 +161,11 @@ $(document).ready(function(){
     
   });
   // RETRIEVE DATA FROM SELECTED ROW OF THE TABLE
-  let fname = {};
-  let flogin = {};
-  let fpassword ={};
-  let fphone = {};
-  let femail = {};
-  let fkey = {};
+  let selectedUser = {};
   $('#tableAdmins tbody').on( 'click', 'tr', function () {
+    selectedUser = table.row(this).data();
     $('#btnEdit').fadeIn('slow');
     $('#btnRemove').fadeIn('slow');
-    fkey = $('td', this).eq(0).text();
-    fname = $('td', this).eq(1).text();
-    admStatus = $('td', this).eq(2).text();
-    flogin = $('td', this).eq(3).text();
-    fpassword = $('td', this).eq(4).text();
-    fphone = $('td', this).eq(5).text();
-    femail = $('td', this).eq(6).text();
   } );
   // PUT SELECTED ROW DATA TO THE EDIT MODAL FORM 
   $("#btnEdit").click(function(event){
@@ -190,16 +175,13 @@ $(document).ready(function(){
     $('#editBtn').show();
     $('#repassword').hide();
     $('.overlay, #registration').fadeIn('slow');
-    //key,
-    $('#firstName').val($('#firstName').val() + (fname),
-    $('#phone').val($('#phone').val() + (fphone)),
-    $('#login').val($('#login').val() + (flogin)),
-    $('#password').val($('#password').val() + (fpassword)),
-    $('#email').val($('#email').val() + (femail)),
-    $(".radiobutton").attr("checked", false),
-    $(".radiobutton[value='"+admStatus+"']").attr("checked", true)
-  
-  );
+    $('#firstName').val(selectedUser.first_name);
+    $('#phone').val(selectedUser.phone);
+    $('#login').val(selectedUser.login);
+    $('#password').val(selectedUser.password);
+    $('#email').val(selectedUser.email);
+    $(".radiobutton").attr("checked", false);
+    $(".radiobutton[value='"+selectedUser.statusIs+"']").attr("checked", true);
   });
  
   // UPDATE DATA TO FIREBASE
@@ -210,19 +192,18 @@ $(document).ready(function(){
       e.preventDefault();
     const newData = {
       first_name: firstName.value,
-      statusIs: admStatus,
+      statusIs: $("input:radio[name=checkbox]:checked").val(),
       phone: phone.value,
       login: login.value,
       password: password.value,
       email: email.value
     };
-    const admkey = fkey;
-    // console.log(newData);
+    const admkey = selectedUser.key;
     rootRef.child(admkey).update(newData);
     $('#registration').fadeOut();
     $('.overlay, #editdone').fadeIn('slow');
     $('#donetext').text('Изменения внесены');
-    $('#registration').trigger('reset');
+    $('#registration form').trigger('reset');
     getdata();
     }
   });
@@ -233,15 +214,15 @@ $(document).ready(function(){
     $('#donetext').text('Подтвердите удаление');
     $('#yesBtn').show();
     $('#noBtn').show();
+  });
     $('#yesBtn').click(function(){
-      const remadmkey = fkey;
+      const remadmkey = selectedUser.key;
       rootRef.child(remadmkey).remove();
       $('#donetext').text('Администратор удален');
       $('#yesBtn').hide();
       $('#noBtn').hide();
       getdata();
     });
-  });
 
   //FUNCTION TO RETRIVE DATA FROM FIREBASE TO THE TABLE
   function getdata() {
