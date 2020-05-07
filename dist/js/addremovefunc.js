@@ -150,7 +150,7 @@ $(document).ready(function(){
       style: 'single'
     },
     columns: [
-      { data: 'key' },
+      { data: 'key', visible: false},
       { data: 'first_name' },
       { data: 'statusIs' },
       { data: 'login' },
@@ -160,13 +160,22 @@ $(document).ready(function(){
     ]
     
   });
+  
+  
   // RETRIEVE DATA FROM SELECTED ROW OF THE TABLE
   let selectedUser = {};
-  $('#tableAdmins tbody').on( 'click', 'tr', function () {
-    selectedUser = table.row(this).data();
+  table.on( 'deselect', function(){
+    selectedUser = null;
+    $('#btnEdit').fadeOut('slow');
+    $('#btnRemove').fadeOut('slow');
+  });
+
+  table.on( 'select', function( e, dt, type, indexes ){
+    selectedUser = table.row(indexes).data();
     $('#btnEdit').fadeIn('slow');
     $('#btnRemove').fadeIn('slow');
-  } );
+  });
+ 
   // PUT SELECTED ROW DATA TO THE EDIT MODAL FORM 
   $("#btnEdit").click(function(event){
     event.preventDefault();
@@ -226,8 +235,10 @@ $(document).ready(function(){
 
   //FUNCTION TO RETRIVE DATA FROM FIREBASE TO THE TABLE
   function getdata() {
+    selectedUser = null;
+    $('#btnEdit').fadeOut('slow');
+    $('#btnRemove').fadeOut('slow');
     table.clear().draw();
-    $('.tableInfo').empty();
     const userDataRef = firebase.database().ref("admins").orderByKey();
     userDataRef.once("value").then(function (snapshot) {
       snapshot.forEach(function (childSnapshot) {

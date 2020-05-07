@@ -51,32 +51,7 @@
     }
     
 }
-.tableinfo {
-    width: 100%;
-    border-spacing: 8px 2px;
-    border-collapse: collapse;
-    
-    
-    td { 
-        white-space:nowrap;
-        border-bottom: 1px solid #dee2e6;
-        padding: 12px 12px 12px 60px;
-        font-size: 14px;
-        &:first-child {
-            padding: 0;
-        }
-        &:nth-of-type(2) {
-            padding-left: 30px;
-        }
-    }
-    th {
-        border-bottom: 1px solid #dee2e6;
-        padding: 12px 12px 12px 60px;
-        &:first-child {
-            padding: 0;
-        }
-        &:nth-of-type(2) {
-            padding-left: 30px;
-        }
-    }
+td { 
+    white-space:nowrap;
+    font-size: 14px;
 }
